@@ -1,90 +1,157 @@
-Attribution 4.0 International (CC BY 4.0)
+OpenConstructionEstimate-DDC-CWICR - Dual License Notice
+Copyright (c) 2022-2026 Artem Boiko / DataDrivenConstruction.io
+Licensor operates as a registered small business (Kleingewerbe /
+Einzelunternehmen) under German law.
 
-Copyright (c) 2025 Artem Boiko / DataDrivenConstruction
+================================================================
+This repository contains two distinct categories of content -
+DATA and CODE - which are licensed differently. A third category
+(authored long-form PDFs) is fully reserved. Read carefully
+before use.
+================================================================
 
-This work is licensed under the Creative Commons Attribution 4.0
-International License. To view a copy of this license, visit:
+================================================================
+1. DATA LICENSE - Creative Commons Attribution 4.0 International
+================================================================
 
-    https://creativecommons.org/licenses/by/4.0/
+All DATA files in this repository are licensed under the
+Creative Commons Attribution 4.0 International License
+(CC BY 4.0).
 
-or send a letter to:
+What counts as "DATA":
 
-    Creative Commons
-    PO Box 1866
-    Mountain View, CA 94042
-    USA
+  - All CSV files (*.csv), including the language-specific
+    datasets in directories named *___DDC_CWICR/
+    (AR___DDC_CWICR/, DE___DDC_CWICR/, EN___DDC_CWICR/,
+    ES___DDC_CWICR/, FR___DDC_CWICR/, HI___DDC_CWICR/,
+    PT___DDC_CWICR/, RU___DDC_CWICR/, UK___DDC_CWICR/,
+    US___DDC_CWICR/, ZH___DDC_CWICR/).
+  - All XLSX files (*.xlsx) containing cost data.
+  - All Parquet files (*.parquet).
+  - All Qdrant snapshot files and vector-database exports
+    (*.snapshot).
+  - All JSON files whose primary content is cost-item records
+    (as opposed to software configuration).
+  - Any data dictionaries, taxonomies, and schema definitions
+    describing the above.
 
-=======================================================================
+Full licence text:  ./LICENSE-DATA.txt
+Online:             https://creativecommons.org/licenses/by/4.0/legalcode
 
-You are free to:
+Attribution requirement:
 
-  Share — copy and redistribute the material in any medium or format
-          for any purpose, including commercial.
+  Boiko, A. (2022-2026). DDC CWICR - Construction Work Items,
+  Costs & Resources [Data set]. DataDrivenConstruction.
+  https://github.com/datadrivenconstruction/OpenConstructionEstimate-DDC-CWICR
 
-  Adapt — remix, transform, and build upon the material
-          for any purpose, including commercial.
+  If a DOI has been registered (via Zenodo or similar), cite
+  the DOI instead.
 
-The licensor cannot revoke these freedoms as long as you follow the
-license terms.
+See CITATION.cff for a machine-readable citation.
 
-=======================================================================
+Note on the EU sui generis database right:
 
-Under the following terms:
+  To the extent Licensor holds a sui generis database right
+  under Directive 96/9/EC (as implemented in German law in
+  §§ 87a - 87e UrhG) over the compiled database as a whole,
+  CC BY 4.0 - by clause 2(a)(1)(B) of the licence - also
+  licenses that right to You, subject to the same attribution
+  condition.
 
-  Attribution — You must give appropriate credit, provide a link to
-                the license, and indicate if changes were made. You may
-                do so in any reasonable manner, but not in any way that
-                suggests the licensor endorses you or your use.
+================================================================
+2. CODE LICENSE - Apache License, Version 2.0
+================================================================
 
-  No additional restrictions — You may not apply legal terms or
-                technological measures that legally restrict others from
-                doing anything the license permits.
+All CODE files in this repository are licensed under the
+Apache License, Version 2.0.
 
-=======================================================================
+What counts as "CODE":
 
-REQUIRED ATTRIBUTION FORMAT
+  - n8n workflow JSON files and pipeline definitions under
+    "0_Workflow and Pipelines CWICR/" including the
+    JavaScript, Python, R, Rust, and shell adapter scripts
+    in that directory.
+  - AI agent instruction files under "1_AI_INSTRUCTIONS/".
+  - Python scripts (*.py), shell scripts (*.sh), and any
+    build / installation scripts throughout the repository.
+  - Dockerfiles and docker-compose definitions.
 
-When using DDC CWICR data in any project, product, publication,
-application, or derivative work, you MUST include the following
-attribution:
+Full licence text:  ./LICENSE-CODE.txt
+Online:             https://www.apache.org/licenses/LICENSE-2.0
 
-    "DDC CWICR by Artem Boiko / DataDrivenConstruction"
-    https://github.com/datadrivenconstruction/OpenConstructionEstimate-DDC-CWICR
+Apache-2.0 was chosen (rather than MIT) specifically because
+several of the CODE components use AI / LLM integrations and an
+explicit patent-licence grant protects downstream users against
+submarine-patent claims.
 
-Examples of appropriate attribution:
+================================================================
+3. DOCUMENTATION
+================================================================
 
-  * In a README or documentation:
-      Data source: DDC CWICR by Artem Boiko / DataDrivenConstruction
-      https://github.com/datadrivenconstruction/OpenConstructionEstimate-DDC-CWICR
-      Licensed under CC BY 4.0
+Markdown documentation (*.md), including all language-specific
+README files (README.md, README.de.md, README.fr.md,
+README.es.md, README.zh.md, README.zh-CN.md, README.ja.md,
+README.ar.md, README.ru.md, README.pt-BR.md), is licensed under
+CC BY 4.0 (same as DATA).
 
-  * In a web application footer or "About" page:
-      Construction cost data provided by DDC CWICR
-      © Artem Boiko / DataDrivenConstruction — CC BY 4.0
+================================================================
+4. COPYRIGHTED MATERIALS - ALL RIGHTS RESERVED
+================================================================
 
-  * In an academic paper or report:
-      Boiko, A. (2025). DDC CWICR — Construction Work Items, Costs &
-      Resources. DataDrivenConstruction.
-      https://github.com/datadrivenconstruction/OpenConstructionEstimate-DDC-CWICR
+The following file is copyrighted and NOT licensed for
+redistribution:
 
-  * In a mobile or desktop application:
-      "About" or "Credits" screen must include:
-      Cost data: DDC CWICR by DataDrivenConstruction (CC BY 4.0)
+  - DataDrivenConstruction_Book_2ndEdition_ArtemBoiko_2025_en-US.pdf
 
-If you modified the data, you must also indicate what changes were made.
+You may download and read this file for personal, non-commercial
+purposes. Redistribution, commercial use, translation, or
+creation of derivative works requires written permission from the
+author. Contact: info@datadrivenconstruction.io.
 
-=======================================================================
+================================================================
+5. COMMERCIAL LICENSING
+================================================================
 
-NOTICES
+CC BY 4.0 permits commercial use of the DATA subject to the
+attribution condition. If You require:
 
-  * This license applies to the entire contents of this repository
-    including but not limited to: databases, datasets (Parquet, CSV,
-    XLSX), vector database snapshots, documentation, workflows,
-    scripts, and all other files.
+  - an enterprise licence without public attribution obligations;
+  - a commercial licence covering derivative data products;
+  - indemnification for the data as delivered;
+  - a data-processing agreement (DPA) or service-level
+    agreement;
+  - regulated-industry compliance documentation,
 
-  * THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTIES OF ANY KIND,
-    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
-    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR ACCURACY
-    OF THE DATA. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY
-    CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE USE OF
-    THIS WORK.
+please contact: info@datadrivenconstruction.io.
+
+================================================================
+6. DATA QUALITY DISCLAIMER
+================================================================
+
+The cost data is compiled from public, licensed, and originally
+collected sources and normalised for cross-language and
+cross-regional comparability. It is NOT a substitute for formal
+bids, quotations, or country-specific professional cost
+publications (RSMeans, BCIS, Batiprix, Baukosteninformations-
+zentrum, RICS NRM, etc.). Licensor makes no representation that
+prices are current, complete, or accurate for any specific
+project. Use at Your own risk - see Sections 5 and 6 of the
+CC BY 4.0 legal code for the full warranty disclaimer.
+
+================================================================
+7. ASSIGNMENT
+================================================================
+
+Licensor may assign the commercial-licensing and proprietary
+rights reserved under Section 4 to any successor entity,
+including a German Unternehmergesellschaft (haftungsbeschränkt)
+(UG) or Gesellschaft mit beschränkter Haftung (GmbH) formed by
+the individual Artem Boiko. The CC BY 4.0 licence grants made to
+downstream users are not affected by such assignment.
+
+================================================================
+Contact:
+  All enquiries (general, commercial licensing, security,
+  privacy):  info@datadrivenconstruction.io
+  Website:   https://datadrivenconstruction.io
+================================================================

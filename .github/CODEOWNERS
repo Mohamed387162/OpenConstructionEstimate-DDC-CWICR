@@ -1,0 +1,24 @@
+# CODEOWNERS for OpenConstructionEstimate-DDC-CWICR
+#
+# See https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-security/managing-other-settings/about-code-owners
+#
+# Scope: legal, licensing, data-provenance, and CI release
+# paths require explicit approval from the repository owner.
+
+# Root-level legal files
+/LICENSE                                @datadrivenconstruction
+/LICENSE-DATA.txt                       @datadrivenconstruction
+/LICENSE-CODE.txt                       @datadrivenconstruction
+/NOTICE                                 @datadrivenconstruction
+/SECURITY.md                            @datadrivenconstruction
+/PATENTS.md                             @datadrivenconstruction
+/TRADEMARK.md                           @datadrivenconstruction
+/CITATION.cff                           @datadrivenconstruction
+/DATA_DICTIONARY.md                     @datadrivenconstruction
+/README.md                              @datadrivenconstruction
+
+# GitHub configuration - workflows that generate CHECKSUMS,
+# Scorecard artefacts, and release metadata must not be altered
+# without explicit approval.
+/.github/                               @datadrivenconstruction
+/.gitattributes                         @datadrivenconstruction

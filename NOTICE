@@ -1,0 +1,184 @@
+OpenConstructionEstimate-DDC-CWICR
+Copyright (c) 2022-2026 Artem Boiko / DataDrivenConstruction.io
+Licensor operates as a registered small business (Kleingewerbe /
+Einzelunternehmen) under German law.
+
+================================================================
+LICENSING OVERVIEW
+================================================================
+
+See ./LICENSE for the dual-license manifest. Summary:
+
+  * DATA  (CSV / XLSX / Parquet / Qdrant)  ->  CC BY 4.0
+  * CODE  (workflows / scripts / AI instr.) ->  Apache-2.0
+  * DOCS  (*.md in all languages)          ->  CC BY 4.0
+  * PDF book (long-form authored text)     ->  All Rights Reserved
+
+Canonical licence texts:
+
+  ./LICENSE-DATA.txt  - CC BY 4.0 legal code (verbatim)
+  ./LICENSE-CODE.txt  - Apache License 2.0 (verbatim)
+
+================================================================
+CITATION
+================================================================
+
+Preferred citation for the dataset:
+
+  Boiko, A. (2022-2026). DDC CWICR - Construction Work Items,
+  Costs & Resources [Data set]. DataDrivenConstruction.
+  https://github.com/datadrivenconstruction/OpenConstructionEstimate-DDC-CWICR
+
+If a DOI has been registered (e.g. via Zenodo), cite the DOI.
+See ./CITATION.cff for a machine-readable citation consumable
+by Zenodo, Zotero, cffconvert, and similar tools.
+
+================================================================
+LANGUAGE COVERAGE
+================================================================
+
+The dataset is delivered in 11 language / region tracks, each in
+its own directory:
+
+  AR___DDC_CWICR/   Arabic (Dubai reference region)
+  DE___DDC_CWICR/   German
+  EN___DDC_CWICR/   English (Toronto reference region)
+  ES___DDC_CWICR/   Spanish
+  FR___DDC_CWICR/   French
+  HI___DDC_CWICR/   Hindi
+  PT___DDC_CWICR/   Portuguese
+  RU___DDC_CWICR/   Russian
+  UK___DDC_CWICR/   Ukrainian
+  US___DDC_CWICR/   English (US reference region)
+  ZH___DDC_CWICR/   Chinese
+
+The "0_Workflow and Pipelines CWICR/" directory contains the
+Apache-2.0 licensed adapter scripts (n8n workflows, Python, R,
+Rust, JavaScript, shell) that orchestrate and consume the
+datasets.
+
+================================================================
+DATA COMPILATION AND SOURCES
+================================================================
+
+The cost data in this repository has been compiled, normalised,
+translated, and harmonised by Licensor from public, licensed,
+and originally collected sources. Source materials include
+public cost-reference publications, manufacturer catalogues,
+national construction statistics, and internal expert
+compilations. Translations and structural harmonisation
+(cross-language mapping, unit conversions, taxonomy alignment)
+are Licensor's original editorial work and are protected under
+the EU sui generis database right (Directive 96/9/EC, as
+implemented by §§ 87a-87e of the German UrhG) over the compiled
+database as a whole. CC BY 4.0 licenses that right to downstream
+users via clause 2(a)(1)(B) of the licence.
+
+Classification and taxonomy codes referenced in the data
+(including but not limited to DIN 276 cost-group numbers, CSI
+MasterFormat division numbers, NRM element codes, UniFormat, and
+OmniClass) are used as factual references; no standard's
+copyrighted descriptive text has been copied into the database
+without permission. Those codes and their associated standards
+are trademarks of their respective owners, including:
+
+  * DIN is a registered trademark of DIN Deutsches Institut
+    fuer Normung e.V.
+  * GAEB is a trademark of Gemeinsamer Ausschuss Elektronik im
+    Bauwesen.
+  * NRM is a trademark of the Royal Institution of Chartered
+    Surveyors (RICS).
+  * MasterFormat(R) is a trademark of the Construction
+    Specifications Institute (CSI).
+  * ISO is a registered trademark of the International
+    Organization for Standardization.
+
+DataDrivenConstruction is not affiliated with, endorsed by, or
+sponsored by any of the above entities.
+
+================================================================
+DATA ACCURACY DISCLAIMER
+================================================================
+
+Prices are approximate, based on public and compiled sources,
+normalised for cross-regional comparability. Figures are NOT a
+substitute for:
+
+  * formal bids or quotations from suppliers
+  * country-specific professional cost publications
+    (RSMeans, BCIS, Batiprix, Baukosteninformations-
+    zentrum / BKI, RICS NRM, etc.)
+  * regulated estimating baselines for public-sector
+    procurement.
+
+Licensor makes no representation of currency, completeness, or
+accuracy for any specific project. Use at Your own risk - see
+Sections 5 and 6 of the CC BY 4.0 legal code for the full
+warranty disclaimer.
+
+================================================================
+AI AND VECTOR SEARCH NOTES
+================================================================
+
+The Qdrant snapshots distributed as *.snapshot files contain
+vector embeddings produced using OpenAI text-embedding-3-large
+(3072-dimensional). Embeddings are derived works of the DATA and
+are therefore covered by the same CC BY 4.0 licence. OpenAI's
+terms of service apply to any live API calls You make; the
+embeddings themselves are inert data and do not trigger ongoing
+obligations to OpenAI.
+
+The Apache-2.0 licensed adapter scripts in
+"0_Workflow and Pipelines CWICR/" optionally integrate with
+third-party Large Language Model APIs (Anthropic, OpenAI, Google
+Generative AI, Mistral, Groq, DeepSeek) when the deploying user
+configures the corresponding API keys. Prompts and context are
+transmitted to the provider you selected; the deploying user is
+solely responsible for (a) which providers are enabled, (b)
+transfer-impact assessment when personal data is involved, and
+(c) concluding EU Standard Contractual Clauses (Regulation
+2021/914) or equivalent with the chosen provider(s).
+
+================================================================
+EU AI ACT TRANSPARENCY
+================================================================
+
+The AI-assisted pipelines and agent instructions distributed
+with this repository include cost-estimation and classification
+features. Under Article 50 of Regulation (EU) 2024/1689 (AI
+Act), end users must be informed that they are interacting with
+AI. Outputs are probabilistic and must be validated by a
+qualified construction-estimation professional before use in any
+tender, contract, or binding cost commitment.
+
+================================================================
+EXPORT CONTROL
+================================================================
+
+The datasets and code in this repository are classified as EAR99
+under U.S. Export Administration Regulations (15 CFR Parts
+730-774) and are subject to EU Regulation 2021/821 (dual-use
+items) and German Außenwirtschaftsgesetz. Users must not export
+to jurisdictions subject to comprehensive U.S. or EU sanctions,
+or to sanctioned persons, without first obtaining any required
+licences. This includes but is not limited to Cuba, Iran, North
+Korea, Syria, and the Crimea / Donetsk / Luhansk regions of
+Ukraine.
+
+================================================================
+SECURITY
+================================================================
+
+Report vulnerabilities privately to
+info@datadrivenconstruction.io. See SECURITY.md for the full
+coordinated-disclosure policy.
+
+================================================================
+CONTACT
+================================================================
+
+All enquiries (general, commercial licensing, security, privacy):
+  info@datadrivenconstruction.io
+
+Website:
+  https://datadrivenconstruction.io

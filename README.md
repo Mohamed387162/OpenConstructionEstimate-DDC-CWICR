@@ -167,7 +167,7 @@
 - [Resources & Community](#resources--community) — Links & channels
 - [Consulting & Training](#consulting--training) — Professional services
 - [Contributing](#contributing) — Submit your workflows
-- [License](#license--cc-by-40) — CC BY 4.0
+- [License](#license) — Dual (CC BY 4.0 data / Apache-2.0 code)
 - [Support the Project](#support-the-project) — Sponsor & donate
 - [🤖 AI Instructions](#ai-instructions) — Documentation for AI assistants
 
@@ -1625,29 +1625,39 @@ AI assistants can help you:
 
 ---
 
-## License — CC BY 4.0
+## License
 
-This entire repository is licensed under [**Creative Commons Attribution 4.0 International (CC BY 4.0)**](https://creativecommons.org/licenses/by/4.0/).
+This repository is **dual-licensed**. See [LICENSE](./LICENSE) for
+the full manifest, [NOTICE](./NOTICE) for third-party attributions
+and the EU sui generis database-right notice, and
+[DATA_DICTIONARY.md](./DATA_DICTIONARY.md) for the data schema.
 
-### What you CAN do
+| Content                                                                           | Licence                                                                        | Canonical text                    |
+|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------|-----------------------------------|
+| **Data** (CSV, XLSX, Parquet, Qdrant snapshots across 11 language / region tracks) | **CC BY 4.0** — Creative Commons Attribution 4.0 International                | [LICENSE-DATA.txt](./LICENSE-DATA.txt) |
+| **Code** (n8n workflows under `0_Workflow and Pipelines CWICR/`, AI agent instructions under `1_AI_INSTRUCTIONS/`, Python / JS / R / Rust / shell adapter scripts, Dockerfiles) | **Apache-2.0** — Apache License, Version 2.0 | [LICENSE-CODE.txt](./LICENSE-CODE.txt) |
+| **Documentation** (`*.md` in all languages)                                       | **CC BY 4.0**                                                                  | [LICENSE-DATA.txt](./LICENSE-DATA.txt) |
+| **PDF book** (`DataDrivenConstruction_Book_2ndEdition_ArtemBoiko_2025_en-US.pdf`) | **All Rights Reserved** — personal reading only                                | —                                 |
+
+### What you CAN do with the DATA (CC BY 4.0)
 
 | | |
 |---|---|
 | ✅ **Use commercially** | Build products, SaaS, apps, APIs — no cost, no permission needed |
 | ✅ **Copy & redistribute** | Share the data in any medium or format |
 | ✅ **Modify & adapt** | Transform, remix, build upon for any purpose |
-| ✅ **Use for AI/ML training** | Train models, build RAG pipelines, create embeddings |
+| ✅ **Use for AI / ML training** | Train models, build RAG pipelines, create embeddings |
 | ✅ **Use in research** | Academic papers, reports, industry analysis |
 
-### What you MUST do
+### What you MUST do (CC BY 4.0)
 
 | | |
 |---|---|
 | 📌 **Give attribution** | You **must** credit the source in every use — see examples below |
 | 📌 **Indicate changes** | If you modified the data, you **must** state what was changed |
-| 📌 **Keep the license** | Include a link to CC BY 4.0 when redistributing |
+| 📌 **Keep the licence** | Include a link to CC BY 4.0 when redistributing |
 
-### Attribution — Required Format
+### Attribution — required format
 
 Every project, product, publication, or application that uses DDC CWICR data **must** include:
 
@@ -1657,15 +1667,39 @@ https://github.com/datadrivenconstruction/OpenConstructionEstimate-DDC-CWICR
 Licensed under CC BY 4.0
 ```
 
+A machine-readable citation is provided in
+[CITATION.cff](./CITATION.cff); GitHub surfaces it as the
+"Cite this repository" button.
+
 **Examples of how to attribute:**
 
 | Where | How |
 |-------|-----|
 | **README / documentation** | `Data source: DDC CWICR by Artem Boiko / DataDrivenConstruction (CC BY 4.0)` |
 | **Web app (footer or About)** | `Construction cost data © Artem Boiko / DataDrivenConstruction — CC BY 4.0` |
-| **Academic paper** | `Boiko, A. (2025). DDC CWICR — Construction Work Items, Costs & Resources. DataDrivenConstruction.` |
+| **Academic paper** | `Boiko, A. (2022-2026). DDC CWICR — Construction Work Items, Costs & Resources. DataDrivenConstruction.` |
 | **Mobile / desktop app** | Credits or About screen: `Cost data: DDC CWICR by DataDrivenConstruction (CC BY 4.0)` |
 | **API / SaaS** | API docs or terms page: `Data provided by DDC CWICR (CC BY 4.0) — datadrivenconstruction.io` |
+
+### Commercial licensing
+
+CC BY 4.0 already permits commercial use subject to the
+attribution condition. A separate commercial licence is
+available if you need any of: an attribution waiver,
+indemnification for the data as delivered, a data-processing
+agreement (DPA), a service-level agreement, or regulated-
+industry compliance documentation.
+
+Contact: [info@datadrivenconstruction.io](mailto:info@datadrivenconstruction.io).
+
+### Security
+
+Do not open public GitHub issues for security vulnerabilities.
+Report privately via
+[GitHub Security Advisories](https://github.com/datadrivenconstruction/OpenConstructionEstimate-DDC-CWICR/security/advisories/new)
+or by email to `info@datadrivenconstruction.io`. See
+[SECURITY.md](./SECURITY.md) for the full coordinated-disclosure
+policy.
 
 ## Support the Project
 

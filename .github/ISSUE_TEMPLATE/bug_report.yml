@@ -1,0 +1,98 @@
+name: Bug report (data, script, or documentation)
+description: Report a problem with the dataset, the adapter scripts, or the documentation
+title: "[Bug] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a report.
+
+        > **Security issues:** do NOT use this form. Report privately
+        > via [Security Advisories](https://github.com/datadrivenconstruction/OpenConstructionEstimate-DDC-CWICR/security/advisories/new).
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected component
+      options:
+        - Dataset (CSV / XLSX / Parquet)
+        - Qdrant snapshot
+        - Python adapter script
+        - JavaScript adapter script
+        - R adapter script
+        - Rust adapter script
+        - Shell adapter script
+        - n8n workflow
+        - Documentation (README / DATA_DICTIONARY)
+        - CITATION.cff
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: track
+    attributes:
+      label: Affected language / region track (if applicable)
+      options:
+        - "AR - Dubai"
+        - "DE - Germany"
+        - "EN - Toronto"
+        - "ES - Spain"
+        - "FR - France"
+        - "HI - India"
+        - "PT - Portugal / Brazil"
+        - "RU - Russia"
+        - "UK - Ukraine"
+        - "US - United States"
+        - "ZH - China"
+        - Cross-track or not applicable
+    validations:
+      required: false
+  - type: input
+    id: rowids
+    attributes:
+      label: Row identifier(s) or file name
+      description: Paste `resource_code`, `work_item_code`, or the affected file name.
+      placeholder: "e.g. PU_MEKAKA_KAPUKA or DDC_CWICR_DE_FRANKFURT.parquet"
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: Release tag or commit hash
+      placeholder: "v10.9 or git sha"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour or value
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour or value
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Public source supporting the expected value (data issues only)
+      description: A URL, publication, or catalog reference that confirms the expected number.
+    validations:
+      required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Pre-submission checklist
+      options:
+        - label: I have searched existing issues and this is not a duplicate.
+          required: true
+        - label: This report does NOT describe a security vulnerability.
+          required: true

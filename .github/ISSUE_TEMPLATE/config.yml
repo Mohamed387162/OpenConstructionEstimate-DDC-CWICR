@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/datadrivenconstruction/OpenConstructionEstimate-DDC-CWICR/security/advisories/new
+    about: Report security issues privately via GitHub Security Advisories. DO NOT open a public issue.
+  - name: Commercial / enterprise licensing
+    url: mailto:info@datadrivenconstruction.io?subject=DDC%20CWICR%20enterprise%20licence
+    about: Attribution waiver, indemnification, DPA, SLA, or regulated-industry compliance.
+  - name: Data-quality discussion
+    url: https://github.com/datadrivenconstruction/OpenConstructionEstimate-DDC-CWICR/discussions
+    about: Questions about price ranges, region methodology, or classification mapping.

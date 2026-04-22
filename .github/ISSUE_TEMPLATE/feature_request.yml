@@ -1,0 +1,49 @@
+name: Feature request or data addition
+description: Suggest an improvement, a new adapter, a new language track, or a dataset extension
+title: "[Feature] "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - New adapter script (Python / JS / R / Rust / shell)
+        - New n8n workflow
+        - New AI agent instruction
+        - New language / region track
+        - Extension to an existing track
+        - Schema change (new column, new table)
+        - Qdrant / embedding pipeline change
+        - Documentation improvement
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources (data additions only)
+      description: List the public, verifiable sources you would use for any new cost rows.
+    validations:
+      required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Pre-submission checklist
+      options:
+        - label: I have searched existing issues and discussions.
+          required: true
+        - label: For data additions, I can provide public source citations per row or batch.
+          required: false

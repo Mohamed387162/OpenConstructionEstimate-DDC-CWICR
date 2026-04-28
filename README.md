@@ -19,7 +19,7 @@
 <div align="center">
   <img src="https://img.shields.io/badge/Work_Items-55,719-2563eb?style=for-the-badge" alt="Work Items">
   <img src="https://img.shields.io/badge/Resources-27,672-059669?style=for-the-badge" alt="Resources">
-  <img src="https://img.shields.io/badge/Languages-22-d97706?style=for-the-badge" alt="Languages">
+  <img src="https://img.shields.io/badge/Languages-23-d97706?style=for-the-badge" alt="Languages">
   <img src="https://img.shields.io/badge/Countries-30-dc2626?style=for-the-badge" alt="Countries">
 </div>
 
@@ -101,6 +101,102 @@
     <img src="https://img.shields.io/badge/🌐_LIVE_DEMO_(only_database)-openconstructionestimate.com-2563eb?style=for-the-badge" alt="Live Demo">
   </a>
 </p>
+
+---
+
+<h2 align="center">🏗️ OpenConstructionERP — Use This Database End-to-End</h2>
+
+<p align="center">
+  <b>Open-source ERP that ships this database pre-loaded.</b> Professional BoQ editor,
+  AI-powered photo / PDF / CAD takeoff, 4D/5D planning, dashboards — all running on
+  the 30-track CWICR cost data below.
+</p>
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=X06cIaroAeI">
+    <img src="https://img.shields.io/badge/▶_Watch_full_demo_(12_min)-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube demo">
+  </a>
+  &nbsp;
+  <a href="https://openconstructionerp.com">
+    <img src="https://img.shields.io/badge/🌐_Live_app-openconstructionerp.com-2ea44f?style=for-the-badge" alt="Live app">
+  </a>
+  &nbsp;
+  <a href="https://github.com/datadrivenconstruction/OpenConstructionERP">
+    <img src="https://img.shields.io/badge/⭐_Source-github.com/datadrivenconstruction/OpenConstructionERP-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub repo">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/datadrivenconstruction/OpenConstructionERP">
+    <img src="https://github.com/datadrivenconstruction/OpenConstructionERP/raw/main/docs/screenshots/hero-overview.jpg" width="95%" alt="OpenConstructionERP hero">
+  </a>
+</p>
+
+### Get up and running in 30 seconds
+
+```bash
+pip install --upgrade openconstructionerp
+openestimate                      # opens the desktop app at http://localhost:8080
+```
+
+The app launches with the **30 CWICR country tracks pre-installed** — start a new
+project, pick a region, and the BoQ editor instantly suggests rates from
+`ddc_de_berlin`, `ddc_au_sydney`, `ddc_hr_zagreb`, etc. with proper localised
+prices and translated work descriptions.
+
+### Feature previews
+
+<table align="center">
+<tr>
+<td align="center" width="50%">
+  <a href="https://github.com/datadrivenconstruction/OpenConstructionERP">
+    <img src="https://github.com/datadrivenconstruction/OpenConstructionERP/raw/main/docs/gifs/02_AI_Photo_to_Estimate.gif" width="100%"/>
+  </a><br/>
+  <b>AI Photo → Estimate</b><br/>
+  Snap a site photo, GPT-4 Vision builds a BoQ
+</td>
+<td align="center" width="50%">
+  <a href="https://github.com/datadrivenconstruction/OpenConstructionERP">
+    <img src="https://github.com/datadrivenconstruction/OpenConstructionERP/raw/main/docs/gifs/15_BoQ_Editor.gif" width="100%"/>
+  </a><br/>
+  <b>BoQ Editor</b><br/>
+  Excel-like editor backed by 55 K rates × 30 tracks
+</td>
+</tr>
+<tr>
+<td align="center" width="50%">
+  <a href="https://github.com/datadrivenconstruction/OpenConstructionERP">
+    <img src="https://github.com/datadrivenconstruction/OpenConstructionERP/raw/main/docs/gifs/16_PDF_Takeoff_v2.gif" width="100%"/>
+  </a><br/>
+  <b>PDF Takeoff</b><br/>
+  Auto-extract quantities from architectural PDFs
+</td>
+<td align="center" width="50%">
+  <a href="https://github.com/datadrivenconstruction/OpenConstructionERP">
+    <img src="https://github.com/datadrivenconstruction/OpenConstructionERP/raw/main/docs/gifs/12_Tasks_Linked_To_BIM.gif" width="100%"/>
+  </a><br/>
+  <b>4D Schedule × BIM</b><br/>
+  Tasks linked to IFC objects, costs flow to dashboards
+</td>
+</tr>
+</table>
+
+<p align="center">
+  <a href="https://openconstructionerp.com/docs">
+    <img src="https://img.shields.io/badge/📖_Docs-openconstructionerp.com/docs-blue?style=flat-square" alt="Docs">
+  </a>
+  &nbsp;
+  <a href="https://github.com/datadrivenconstruction/OpenConstructionERP#quick-start">
+    <img src="https://img.shields.io/badge/🚀_Quick_start-pip_install-purple?style=flat-square" alt="Quick start">
+  </a>
+  &nbsp;
+  <a href="https://github.com/datadrivenconstruction/OpenConstructionERP/raw/main/docs/screenshots/full_preview_compressed.mp4">
+    <img src="https://img.shields.io/badge/📹_Hero_video_(mp4)-direct-orange?style=flat-square" alt="Hero video">
+  </a>
+</p>
+
+---
+
 <br>
 <p align="center">
  DataDrivenConstruction clients and users

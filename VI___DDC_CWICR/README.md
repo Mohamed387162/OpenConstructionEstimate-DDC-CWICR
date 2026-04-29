@@ -11,7 +11,7 @@
 | Language | `vi` |
 | Currency | `VND` (ISO 4217) |
 | Source track | `UK_GBP` (United Kingdom / London) |
-| Generated | 2026-04-28 |
+| Generated | 2026-04-29 |
 | Work items | 900,225 rows |
 | Unique resources | 6,670 |
 

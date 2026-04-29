@@ -11,7 +11,7 @@
 | Language | `nl` |
 | Currency | `EUR` (ISO 4217) |
 | Source track | `DE_BERLIN` (Germany / Berlin) |
-| Generated | 2026-04-27 |
+| Generated | 2026-04-29 |
 | Work items | 900,225 rows |
 | Unique resources | 6,671 |
 

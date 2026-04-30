@@ -82,6 +82,23 @@ TEXT_COLS: tuple[str, ...] = (
     # Mixed unit phrases ("100 Stück, Stück") visible in catalog/SIMPLE
     # outputs. Translator already handles unit phrases via `mass_unit`.
     "price_abstract_resource_unit",
+    # Composite price-abstract descriptors — `•`-separated lists and
+    # `unit=tech_group` maps that aggregate the resource catalog. These
+    # were leaking the source-language descriptions ("Geotextilien",
+    # "Polyamid-Erosionsschutzmatte, Dicke") into every derived track.
+    "price_abstract_resource_common_start",
+    "price_abstract_resource_variable_parts",
+    "price_abstract_resource_est_price_range",
+    "price_abstract_resource_est_price_all_values",
+    "price_abstract_resource_group_per_unit",
+    "price_abstract_resource_common_start_per_unit",
+    "price_abstract_resource_variable_parts_per_unit",
+    "price_abstract_resource_est_price_range_per_unit",
+    "price_abstract_resource_est_price_all_values_per_unit",
+    # Region of origin for the prices ("Berlin, Germany") — single value
+    # per track, but it should localise to the target language ("Berlin,
+    # Germania" for Romanian, "ベルリン、ドイツ" for Japanese, etc.).
+    "price_region",
 )
 
 # Number of high-frequency strings sent to the LLM.

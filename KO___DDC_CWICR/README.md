@@ -11,7 +11,7 @@
 | Language | `ko` |
 | Currency | `KRW` (ISO 4217) |
 | Source track | `UK_GBP` (United Kingdom / London) |
-| Generated | 2026-04-29 |
+| Generated | 2026-04-30 |
 | Work items | 900,225 rows |
 | Unique resources | 6,670 |
 

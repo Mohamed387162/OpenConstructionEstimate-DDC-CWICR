@@ -1,4 +1,3 @@
-DDC CWICR placeholder for RO_BUCHAREST_workitems_costs_resources_DDC_CWICR_SIMPLE.xlsx
-This placeholder ships the on-disk metadata for the RO track only.
-Regenerate the real artefact from the parquet via the country-track-builder
-pipeline (see DATA_DICTIONARY.md).
+version https://git-lfs.github.com/spec/v1
+oid sha256:4502f46d206f7406d6c28c5f912eca1a94fccdd32d4f28b02f91cae563cd14b5
+size 271720372

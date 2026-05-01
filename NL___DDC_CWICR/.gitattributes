@@ -1,5 +1,4 @@
 # These placeholders are tiny (134B-5KB) and don't need LFS storage.
 # Override the repo-level *.xlsx/*.pdf/*.snapshot LFS filter for this folder.
-*.xlsx -filter -diff -merge -text
 *.pdf -filter -diff -merge -text
 *.snapshot -filter -diff -merge -text

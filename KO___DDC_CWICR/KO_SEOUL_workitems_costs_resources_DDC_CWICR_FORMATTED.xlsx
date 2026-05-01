@@ -1,4 +1,3 @@
-DDC CWICR placeholder for KO_SEOUL_workitems_costs_resources_DDC_CWICR_FORMATTED.xlsx
-This placeholder ships the on-disk metadata for the KO track only.
-Regenerate the real artefact from the parquet via the country-track-builder
-pipeline (see DATA_DICTIONARY.md).
+version https://git-lfs.github.com/spec/v1
+oid sha256:8b99d6515d1782d9f543f44ead01d700055ecdb6788be6ae2abc3959a4796e1b
+size 272906729

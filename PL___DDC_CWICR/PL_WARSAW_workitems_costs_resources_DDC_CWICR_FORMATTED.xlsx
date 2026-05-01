@@ -1,4 +1,3 @@
-DDC CWICR placeholder for PL_WARSAW_workitems_costs_resources_DDC_CWICR_FORMATTED.xlsx
-This placeholder ships the on-disk metadata for the PL track only.
-Regenerate the real artefact from the parquet via the country-track-builder
-pipeline (see DATA_DICTIONARY.md).
+version https://git-lfs.github.com/spec/v1
+oid sha256:00c62a9ad9c1d6bbcc20c6a8711a49c3fc9b17b08acda012cca363957d141f65
+size 270374288

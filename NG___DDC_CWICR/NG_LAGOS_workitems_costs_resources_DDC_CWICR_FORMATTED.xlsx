@@ -1,4 +1,3 @@
-DDC CWICR placeholder for NG_LAGOS_workitems_costs_resources_DDC_CWICR_FORMATTED.xlsx
-This placeholder ships the on-disk metadata for the NG track only.
-Regenerate the real artefact from the parquet via the country-track-builder
-pipeline (see DATA_DICTIONARY.md).
+version https://git-lfs.github.com/spec/v1
+oid sha256:6f9836b0b67d88429ebd5f3a0a4bc6f4b70cb18f49ed6126e674134f7cdcf0e7
+size 266282364

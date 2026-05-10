@@ -94,14 +94,13 @@ def derive_snapshot_name(parquet_path: Path) -> str:
 
 
 # ===========================================================================
-# Per-country pipeline (re-uses model)
+# Per-country pipeline (re-uses model). Split into GPU phase (encode) and
+# IO phase (upload+snapshot+push) so consecutive countries can be pipelined:
+# while country N is uploading/pushing (CPU/network), country N+1 starts
+# encoding on the GPU.
 # ===========================================================================
-def encode_country(country: str, parquet_path: Path, model, qdrant):
-    from qdrant_client.models import (
-        Distance, VectorParams, PayloadSchemaType, PointStruct,
-        SparseVectorParams, SparseIndexParams, SparseVector,
-    )
-
+def encode_phase_gpu(country: str, parquet_path: Path, model, qdrant):
+    """GPU phase: load parquet → classify → encode. Returns dict for IO phase."""
     collection = f"cwicr_{country.lower()}_v3"
     print(f"\n{'='*70}")
     print(f"Country: {country} | parquet: {parquet_path.name}")
@@ -123,12 +122,15 @@ def encode_country(country: str, parquet_path: Path, model, qdrant):
     n_rates = len(rate_df)
     print(f"  {n_rates:,} unique rate_codes")
 
-    # Skip if already done
+    # Skip if already done — return marker for IO phase to just snapshot+push
     if qdrant.collection_exists(collection):
         existing = qdrant.count(collection).count
         if existing == n_rates:
             print(f"  ✓ Collection already has {existing:,} points — skipping encoding")
-            return _save_snapshot(country, parquet_path, qdrant, collection)
+            return {"country": country, "parquet_path": parquet_path,
+                    "collection": collection, "t_start": t_start,
+                    "skip_upload": True, "rows_info": None,
+                    "dense": None, "sparse": None, "n_rates": n_rates}
 
     # Classify (RU propagation for non-RU countries)
     if country == "RU":
@@ -197,7 +199,7 @@ def encode_country(country: str, parquet_path: Path, model, qdrant):
           f"({n_with_ifc:,} = {pct_ifc:.1f}% with ifc_class, "
           f"{n_propagated:,} = {pct_prop:.1f}% propagated from RU)")
 
-    # Encode
+    # Encode (GPU phase)
     print(f"[4/5] Encoding {n_rates:,} texts ...")
     t_enc = time.time()
     out = model.encode([info["text"] for info in rows_info],
@@ -206,6 +208,42 @@ def encode_country(country: str, parquet_path: Path, model, qdrant):
                         return_colbert_vecs=False)
     dense, sparse = out["dense_vecs"], out["lexical_weights"]
     print(f"  encoded in {time.time()-t_enc:.0f}s")
+
+    # End of GPU phase — return data for IO phase (which can run while next
+    # country starts encoding).
+    return {
+        "country": country, "parquet_path": parquet_path,
+        "collection": collection, "t_start": t_start,
+        "skip_upload": False, "rows_info": rows_info,
+        "dense": dense, "sparse": sparse, "n_rates": n_rates,
+    }
+
+
+def encode_phase_io(gpu_result: dict, qdrant):
+    """IO phase: create collection → upsert → snapshot → push → cleanup.
+    Runs in worker thread; can overlap with GPU encoding of NEXT country."""
+    from qdrant_client.models import (
+        Distance, VectorParams, PayloadSchemaType, PointStruct,
+        SparseVectorParams, SparseIndexParams, SparseVector,
+    )
+    country = gpu_result["country"]
+    parquet_path = gpu_result["parquet_path"]
+    collection = gpu_result["collection"]
+    t_start = gpu_result["t_start"]
+    n_rates = gpu_result["n_rates"]
+
+    # If GPU phase determined collection already populated, skip straight to snapshot+push
+    if gpu_result["skip_upload"]:
+        snap_path = _save_snapshot(country, parquet_path, qdrant, collection)
+        pushed = _git_push_snapshot(country, snap_path)
+        if pushed:
+            _post_push_cleanup(country, collection, snap_path, qdrant)
+        print(f"\n✓ {country} done in {(time.time()-t_start)/60:.1f} min (skip-encoded)")
+        return
+
+    rows_info = gpu_result["rows_info"]
+    dense = gpu_result["dense"]
+    sparse = gpu_result["sparse"]
 
     # Upload
     print(f"[5/5] Uploading to '{collection}' ...")
@@ -290,26 +328,25 @@ def encode_country(country: str, parquet_path: Path, model, qdrant):
         print(f"\n✗ {country} encoded but NOT pushed in {(time.time()-t_start)/60:.1f} min")
         return
 
-    # CRITICAL: free Qdrant disk+memory by deleting collection after snapshot persisted on disk+git.
-    # Snapshot can be re-imported any time from GitHub LFS.
+    _post_push_cleanup(country, collection, snap_path, qdrant)
+    print(f"\n✓ {country} done in {(time.time()-t_start)/60:.1f} min")
+
+
+def _post_push_cleanup(country, collection, snap_path, qdrant):
+    """Free Qdrant collection, local snapshot file, and pruned LFS cache."""
     print(f"  freeing Qdrant: deleting {collection} (snapshot on GitHub)")
     try:
         qdrant.delete_collection(collection)
     except Exception as e:
         print(f"  ⚠ could not delete collection: {e}")
 
-    # Delete LOCAL snapshot file too — it's safe on GitHub LFS, frees host disk.
     try:
         snap_path.unlink()
         print(f"  removed local {snap_path.name} (still on GitHub LFS)")
     except Exception as e:
         print(f"  ⚠ could not remove local snapshot: {e}")
 
-    # Prune local LFS object cache: pushed objects sit in .git/lfs/objects/ even
-    # after working tree deletion (HEAD pointer keeps them retained). Free them
-    # since they're confirmed on GitHub remote.
     try:
-        import subprocess
         lfs_dir = ROOT / ".git" / "lfs" / "objects"
         if lfs_dir.exists():
             now = time.time()
@@ -317,7 +354,7 @@ def encode_country(country: str, parquet_path: Path, model, qdrant):
             for f in lfs_dir.rglob("*"):
                 if f.is_file() and f.stat().st_size > 100 * 1024 * 1024:
                     age_min = (now - f.stat().st_mtime) / 60
-                    if age_min > 5:  # don't touch the just-pushed object
+                    if age_min > 5:
                         sz = f.stat().st_size
                         f.unlink()
                         freed += sz
@@ -325,8 +362,6 @@ def encode_country(country: str, parquet_path: Path, model, qdrant):
                 print(f"  pruned LFS cache: freed {freed/1024/1024:.0f}MB")
     except Exception as e:
         print(f"  ⚠ LFS prune failed: {e}")
-
-    print(f"\n✓ {country} done in {(time.time()-t_start)/60:.1f} min")
 
 
 def _save_snapshot(country: str, parquet_path: Path, qdrant, collection: str):
@@ -436,15 +471,42 @@ def main():
     qdrant = QdrantClient(QDRANT_URL, timeout=600, check_compatibility=False)
 
     t_total = time.time()
+
+    # Pipelined: GPU encode of country N+1 starts while IO worker uploads/pushes N.
+    # Saves ~10 min/country (the upload+push duration that was previously serial).
+    import threading
+    from queue import Queue
+    io_queue: Queue = Queue(maxsize=1)  # bounded to limit RAM (1 country in flight)
+    io_done = threading.Event()
+
+    def io_worker():
+        while True:
+            item = io_queue.get()
+            if item is None:
+                io_queue.task_done()
+                io_done.set()
+                return
+            try:
+                encode_phase_io(item, qdrant)
+            except Exception as e:
+                import traceback
+                traceback.print_exc()
+                print(f"  ⚠ IO worker exception for {item.get('country','?')}: {e}")
+            finally:
+                io_queue.task_done()
+
+    worker = threading.Thread(target=io_worker, daemon=True)
+    worker.start()
+
     for i, (country, parquet) in enumerate(countries, 1):
         print(f"\n[{i}/{len(countries)}] {country}")
-        # Retry up to 3 times with exponential backoff if Qdrant flakes
         attempts = 0
         max_attempts = 3
+        gpu_result = None
         while attempts < max_attempts:
             attempts += 1
             try:
-                encode_country(country, parquet, model, qdrant)
+                gpu_result = encode_phase_gpu(country, parquet, model, qdrant)
                 break
             except Exception as e:
                 err = str(e)[:120]
@@ -452,19 +514,26 @@ def main():
                 if attempts >= max_attempts:
                     print(f"  ✗ giving up on {country}")
                     break
-                # Re-init Qdrant client + wait for recovery
                 wait = 60 * attempts
                 print(f"  sleeping {wait}s, then re-checking Qdrant ...")
                 time.sleep(wait)
                 try:
-                    qdrant.get_collections()  # probe
+                    qdrant.get_collections()
                     print(f"  Qdrant responsive again, retrying ...")
                 except Exception as probe_err:
                     print(f"  Qdrant still down ({probe_err}); reconnecting client ...")
                     qdrant = QdrantClient(QDRANT_URL, timeout=600, check_compatibility=False)
-        # cooldown between countries to let Qdrant settle
-        print(f"  cooldown 30s ...")
-        time.sleep(30)
+        if gpu_result is None:
+            continue
+        # Hand off IO phase to worker thread (blocks if worker still busy with previous country)
+        io_queue.put(gpu_result)
+        # No cooldown here — worker takes time to upload/push, which IS the cooldown.
+
+    # Signal worker to drain and exit
+    io_queue.put(None)
+    print("\nWaiting for IO worker to finish remaining uploads ...")
+    io_done.wait()
+    print("IO worker finished.")
 
     print(f"\n{'='*70}")
     print(f"ALL DONE — total {(time.time()-t_total)/60:.0f} min")
